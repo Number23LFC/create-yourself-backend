@@ -1,35 +1,21 @@
 package pl.mgk.hubertrybarczyk.createyourself.model;
 
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "category")
-public class Category {
+public class Category extends BaseEntity {
 
-    @Id
-    @GeneratedValue
-    private long id;
-
+    @Column(name = "name")
     private String name;
 
-    public Category() { // JPA
-    }
+    @Column(name = "description")
+    private String description;
 
-    public Category(String name) {
-        this.name = name;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
+    private Set<Objective> objectives = new HashSet<>();
 
     public String getName() {
         return name;
@@ -39,11 +25,19 @@ public class Category {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return "Category{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Set<Objective> getObjectives() {
+        return objectives;
+    }
+
+    public void setObjectives(Set<Objective> objectives) {
+        this.objectives = objectives;
     }
 }
