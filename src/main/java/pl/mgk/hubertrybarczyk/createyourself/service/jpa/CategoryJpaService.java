@@ -1,6 +1,5 @@
 package pl.mgk.hubertrybarczyk.createyourself.service.jpa;
 
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import pl.mgk.hubertrybarczyk.createyourself.model.Category;
 import pl.mgk.hubertrybarczyk.createyourself.repository.CategoryRepository;
@@ -12,7 +11,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Service
-@Profile("springdatajpa")
+// @Profile("springdatajpa")
 public class CategoryJpaService implements CategoryService {
     private final CategoryRepository categoryRepository;
     private final ObjectiveRepository objectiveRepository;
