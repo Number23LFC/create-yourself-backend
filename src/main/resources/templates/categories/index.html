@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>List of Categories</title>
+</head>
+<body>
+<!--/*@thymesVar id="owner" type="pl.mgk.hubertrybarczyk.createyourself.model.Category"*/-->
+<h2 th:text="'List of Categories'">Categories List</h2>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th style="width: 150px;">Name</th>
+        <th style="width: 150px;">Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="category : ${categories}">
+        <td th:text="${category.name}">Joe</td>
+        <td th:text="${category.description}">Buck</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
