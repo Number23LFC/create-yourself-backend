@@ -20,4 +20,38 @@ public class Objective extends BaseEntity {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "objective")
     private Set<Todo> todos = new HashSet<>();
+
+    //TODO: deadling date, importance (enum)
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public Set<Todo> getTodos() {
+        return todos;
+    }
+
+    public void setTodos(Set<Todo> todos) {
+        this.todos = todos;
+    }
 }
