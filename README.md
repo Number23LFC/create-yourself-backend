@@ -11,13 +11,15 @@ Dev:
 - GIT
 - Angular 
 
-## Category:
+## Entitites:
+
+### Category:
 - name: String 
 - description: String
 - icon: byte[]
 - List<objectives>
   
-## Objective:
+### Objective:
 - name:String
 - description: String
 - category: Category
@@ -26,7 +28,45 @@ Dev:
 - importence: Enum
 - List<Todo>
   
-## Todo:
+### Todo:
 - name: String
 - isDone: boolean
 - date: date/localDate
+
+### Dates:
+- date: Date
+- description: String
+
+
+## API:
+
+\categories
+\categories\{id}
+
+\categories\{id}\objectives
+\categories\{id}\objectives\{id}
+
+
+## Menu:
+- Statystyki
+- Cele
+- Kategorie
+- Daty
+
+## Ekrany:
+
+### Statystyki
+Wszystkie: {} Wykonane: {} Pozostałe: {}
+
+### Cele
+- [ ] Lista
+- [ ] filtrowanie (kategoria, data, nazwa)
+- [ ] dodawanie
+
+### Kategorie
+
+- [ ] Lista
+- [ ] edycja
+- [ ] dodawanie
+
+
