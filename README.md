@@ -48,25 +48,29 @@ Dev:
 
 
 ## Menu:
-- Statystyki
-- Cele
-- Kategorie
-- Daty
+- [ ] Statystyki
+- [ ] Cele
+- [ ] Kategorie
+- [ ] Daty
 
 ## Ekrany:
 
 ### Statystyki
-Wszystkie: {} Wykonane: {} Pozostałe: {}
+- [ ] Wszystkie: {} Wykonane: {} Pozostałe: {}
+- [ ] Wykres
+- [ ] Planner (Miesiac - kategoria - Todos)
 
 ### Cele
-- [ ] Lista
+- [ ] lista
 - [ ] filtrowanie (kategoria, data, nazwa)
 - [ ] dodawanie
+- [ ] edycja
 
 ### Kategorie
 
-- [ ] Lista
+- [ ] lista
 - [ ] edycja
-- [ ] dodawanie
+- [ ] dodawanie:
+  
 
 
