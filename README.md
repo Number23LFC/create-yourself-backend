@@ -33,7 +33,7 @@ Dev:
 - isDone: boolean
 - date: date/localDate
 
-### Dates:
+### Celebration:
 - date: Date
 - description: String
 
@@ -70,7 +70,25 @@ Dev:
 
 - [ ] lista
 - [ ] edycja
-- [ ] dodawanie:
+- [ ] dodawanie
   
+## Daty
+
+- [ ] lista
+- [ ] dodowanie
+- [ ] usuwanie
+
+---
+
+20/11/2018:
+- [x] Dodanie do menu: "Daty"
+
+21/11/2018:
+Daty:
+- [ ] Dodanie komponentu
+- [ ] Repo
+- [ ] Service
+- [ ] GUI - lista
+- [ ] Usuwanie z listy
 
 
