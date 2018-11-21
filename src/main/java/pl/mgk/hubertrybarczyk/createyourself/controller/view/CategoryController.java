@@ -1,6 +1,7 @@
 package pl.mgk.hubertrybarczyk.createyourself.controller.view;
 
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +12,7 @@ import pl.mgk.hubertrybarczyk.createyourself.service.CategoryService;
 
 @Controller
 @RequestMapping("/category")
+@Profile("viewController")
 public class CategoryController {
 
     private final CategoryService categoryService;

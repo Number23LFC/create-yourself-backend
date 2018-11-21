@@ -3,20 +3,27 @@ package pl.mgk.hubertrybarczyk.createyourself.bootstrap;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import pl.mgk.hubertrybarczyk.createyourself.model.Category;
+import pl.mgk.hubertrybarczyk.createyourself.model.Celebration;
 import pl.mgk.hubertrybarczyk.createyourself.model.Objective;
 import pl.mgk.hubertrybarczyk.createyourself.model.Todo;
 import pl.mgk.hubertrybarczyk.createyourself.service.CategoryService;
+import pl.mgk.hubertrybarczyk.createyourself.service.CelebrationService;
 import pl.mgk.hubertrybarczyk.createyourself.service.ObjectiveService;
+
+import java.time.LocalDate;
+
 
 @Component
 public class DataLoader implements CommandLineRunner {
 
     private final CategoryService categoryService;
     private final ObjectiveService objectiveService;
+    private final CelebrationService celebrationService;
 
-    public DataLoader(CategoryService categoryService, ObjectiveService objectiveService) {
+    public DataLoader(CategoryService categoryService, ObjectiveService objectiveService, CelebrationService celebrationService) {
         this.categoryService = categoryService;
         this.objectiveService = objectiveService;
+        this.celebrationService = celebrationService;
     }
 
     @Override
@@ -66,6 +73,25 @@ public class DataLoader implements CommandLineRunner {
         objective2.setDescription("Wycieczka");
         objective2.setCategory(category);
         objectiveService.save(objective2);
+
+
+
+
+        try {
+            Celebration c1 = new Celebration();
+            c1.setDescription("Wigilia");
+            c1.setDate(LocalDate.of(2018,12,24));
+            System.out.println(c1.getDate() + " " + c1.getDescription());
+            celebrationService.save(c1);
+
+            Celebration c2 = new Celebration();
+            c2.setDescription("Urodziny Giekonia");
+            c2.setDate(LocalDate.of(2018,11,23));
+            System.out.println(c2.getDate() + " " + c2.getDescription());
+            celebrationService.save(c2);
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
 
         System.out.println("Add data");
     }

@@ -22,7 +22,8 @@ public class ObjectiveJpaService implements ObjectiveService {
     public Set<Objective> findAll() {
         Set<Objective> objectives = new HashSet<>();
         objectiveRepository.findAll().forEach(objectives::add);
-        return objectives;    }
+        return objectives;
+    }
 
     @Override
     public Objective findById(Long aLong) {

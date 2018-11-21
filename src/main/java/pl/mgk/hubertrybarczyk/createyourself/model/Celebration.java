@@ -1,9 +1,9 @@
 package pl.mgk.hubertrybarczyk.createyourself.model;
 
-import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "celebration")
@@ -13,10 +13,7 @@ public class Celebration extends BaseEntity {
     private String description;
 
     @Column(name = "date")
-    private Date date;
-
-    public Celebration() {
-    }
+    private LocalDate date;
 
     public String getDescription() {
         return description;
@@ -26,11 +23,11 @@ public class Celebration extends BaseEntity {
         this.description = description;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 }
