@@ -26,6 +26,11 @@ public class CelebrationController {
     public Celebration create(@RequestBody Celebration celebration) {
         return celebrationService.save(celebration);
     }
+    
+    @DeleteMapping(path ={"/{id}"})
+    public void delete(@PathVariable("id") Long id) {
+        celebrationService.deleteId(id);
+    }
 
     //TODO update save find etc.
 
