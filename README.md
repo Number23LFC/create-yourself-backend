@@ -92,3 +92,7 @@ Daty:
 - [ ] Usuwanie z listy
 
 
+
+https://grokonez.com/spring-framework/spring-data/spring-boot-angular-6-example-spring-data-rest-mongodb-crud-example
+
+https://developer.okta.com/blog/2018/08/22/basic-crud-angular-7-and-spring-boot-2
