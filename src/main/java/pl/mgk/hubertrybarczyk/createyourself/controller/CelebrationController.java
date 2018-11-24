@@ -1,13 +1,15 @@
 package pl.mgk.hubertrybarczyk.createyourself.controller;
 
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.mgk.hubertrybarczyk.createyourself.model.Celebration;
 import pl.mgk.hubertrybarczyk.createyourself.service.CelebrationService;
 
 import java.util.Set;
 
-@RestController("/celebrations")
+@RestController()
 @CrossOrigin(origins = "http://localhost:4200")
 public class CelebrationController {
 
@@ -17,21 +19,22 @@ public class CelebrationController {
         this.celebrationService = celebrationService;
     }
 
-    @GetMapping
+    @GetMapping("/celebrations")
     public Set<Celebration> findAll() {
         return celebrationService.findAll();
     }
 
-    @PostMapping
+    @PostMapping("/celebrations")
     public Celebration create(@RequestBody Celebration celebration) {
         return celebrationService.save(celebration);
     }
-    
-    @DeleteMapping(path ={"/{id}"})
-    public void delete(@PathVariable("id") Long id) {
-        celebrationService.deleteId(id);
-    }
 
+    @DeleteMapping("celebrations/{id}")
+    public ResponseEntity<String> deleteCelebration(@PathVariable("id") Long id) {
+        System.out.println("Delete Celebration with ID = " + id + "...");
+        celebrationService.deleteId(id);
+        return new ResponseEntity<>("Customer has been deleted!", HttpStatus.OK);
+    }
     //TODO update save find etc.
 
 }
