@@ -1,5 +1,7 @@
 package pl.mgk.hubertrybarczyk.createyourself.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,6 +16,7 @@ public class Category extends BaseEntity {
     @Column(name = "description")
     private String description;
 
+    @JsonBackReference
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
     private Set<Objective> objectives = new HashSet<>();
 

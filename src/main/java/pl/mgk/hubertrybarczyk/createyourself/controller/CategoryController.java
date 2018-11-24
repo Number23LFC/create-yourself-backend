@@ -1,16 +1,15 @@
 package pl.mgk.hubertrybarczyk.createyourself.controller;
 
-
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.RestController;
+import pl.mgk.hubertrybarczyk.createyourself.model.Category;
 import pl.mgk.hubertrybarczyk.createyourself.service.CategoryService;
 
-@Controller
-@RequestMapping("/category")
+import java.util.Set;
+
+@RestController()
+@CrossOrigin(origins = "http://localhost:4200")
 public class CategoryController {
 
     private final CategoryService categoryService;
@@ -19,21 +18,8 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-    @RequestMapping({"", "/", "/index", "index.html"})
-    public String listCategories(Model model) {
-        model.addAttribute("categories", categoryService.findAll());
-        return "categories/index";
-    }
-
-    @RequestMapping("/find")
-    public String findCategory() {
-        return "not_implemented";
-    }
-
-    @GetMapping("/{categoryId}")
-    public ModelAndView showCategory(@PathVariable("categoryId") Long categoryId) {
-        ModelAndView nav = new ModelAndView("categories/categoryDetails");
-        nav.addObject(categoryService.findById(categoryId));
-        return nav;
+    @GetMapping("/categories")
+    public Set<Category> getAllCategories() {
+        return categoryService.findAll();
     }
 }

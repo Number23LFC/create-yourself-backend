@@ -33,8 +33,7 @@ public class CelebrationController {
     public ResponseEntity<String> deleteCelebration(@PathVariable("id") Long id) {
         System.out.println("Delete Celebration with ID = " + id + "...");
         celebrationService.deleteId(id);
-        return new ResponseEntity<>("Customer has been deleted!", HttpStatus.OK);
+        return new ResponseEntity<>("Celebration has been deleted!", HttpStatus.OK);
     }
-    //TODO update save find etc.
 
 }

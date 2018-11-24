@@ -39,7 +39,7 @@ public class DataLoader implements CommandLineRunner {
     private void loadData() {
         Category category = new Category();
         category.setName("Podróże");
-        category.setDescription("Wycieczki małe i duże");
+        category.setDescription("Description...");
 
         Objective objective = new Objective();
         objective.setName("Islandia");
@@ -58,14 +58,17 @@ public class DataLoader implements CommandLineRunner {
 
         Category category2 = new Category();
         category2.setName("Kariera");
+        category2.setDescription("Description 2");
         categoryService.save(category2);
 
         Category category3 = new Category();
         category3.setName("Sport");
+        category3.setDescription("Descrption 3");
         categoryService.save(category3);
 
         Category category4 = new Category();
         category4.setName("Finanse");
+        category4.setDescription("Description 4");
         categoryService.save(category4);
 
         Objective objective2 = new Objective();
