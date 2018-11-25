@@ -41,4 +41,12 @@ public class ObjectiveController {
         return new ResponseEntity<>("Objective has been deleted!", HttpStatus.OK);
     }
 
+    @GetMapping("objectives/stats")
+    public double doneObjectives() {
+        double all = objectiveService.findAll().stream().count();
+        double done = objectiveService.findAll().stream().filter(objective -> objective.isDone()).count();
+        System.out.println("ALL: " + all);
+        System.out.println("DONE: " + done);
+        return (done/all * 100);
+    }
 }

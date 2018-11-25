@@ -75,6 +75,7 @@ public class DataLoader implements CommandLineRunner {
         objective2.setName("Budapest");
         objective2.setDescription("Wycieczka");
         objective2.setCategory(category);
+        objective2.setDone(true);
         objectiveService.save(objective2);
 
         Objective objective3 = new Objective();

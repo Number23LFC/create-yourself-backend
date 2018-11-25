@@ -24,7 +24,17 @@ public class Objective extends BaseEntity {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "objective")
     private Set<Todo> todos = new HashSet<>();
 
-    //TODO: deadling date, importance (enum)
+    @Column(name = "isDone")
+    private boolean isDone;
+
+    public boolean isDone() {
+        return isDone;
+    }
+
+    public void setDone(boolean done) {
+        isDone = done;
+    }
+//TODO: deadling date, importance (enum)
 
     public String getName() {
         return name;
