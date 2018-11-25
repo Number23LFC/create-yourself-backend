@@ -92,10 +92,16 @@ public class DataLoader implements CommandLineRunner {
             celebrationService.save(c1);
 
             Celebration c2 = new Celebration();
-            c2.setDescription("Urodziny Giekonia");
+            c2.setDescription("Urodziny Henia");
             c2.setDate(LocalDate.of(2018,11,23));
             System.out.println(c2.getDate() + " " + c2.getDescription());
             celebrationService.save(c2);
+
+            Celebration c3 = new Celebration();
+            c3.setDescription("Urodziny Alfreda");
+            c3.setDate(LocalDate.of(2018,03,22));
+            System.out.println(c3.getDate() + " " + c3.getDescription());
+            celebrationService.save(c3);
         } catch (Exception e) {
             System.out.println(e.toString());
         }
