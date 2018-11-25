@@ -77,7 +77,11 @@ public class DataLoader implements CommandLineRunner {
         objective2.setCategory(category);
         objectiveService.save(objective2);
 
-
+        Objective objective3 = new Objective();
+        objective3.setName("Milion");
+        objective3.setDescription("$$$");
+        objective3.setCategory(category4);
+        objectiveService.save(objective3);
 
 
         try {

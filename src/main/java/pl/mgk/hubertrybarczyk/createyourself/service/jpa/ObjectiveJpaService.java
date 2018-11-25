@@ -7,6 +7,7 @@ import pl.mgk.hubertrybarczyk.createyourself.service.ObjectiveService;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 //@Profile("springdatajpa")
@@ -43,5 +44,11 @@ public class ObjectiveJpaService implements ObjectiveService {
     @Override
     public void deleteId(Long aLong) {
         objectiveRepository.deleteById(aLong);
+    }
+
+    public Set<Objective> findByCategoryName(String categoryName) {
+        Set<Objective> objectives = new HashSet<>();
+        objectiveRepository.findAll().forEach(objectives::add);
+        return objectives.stream().filter(obj -> obj.getCategory().getName().equalsIgnoreCase(categoryName)).collect(Collectors.toSet());
     }
 }

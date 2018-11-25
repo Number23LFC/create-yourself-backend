@@ -24,6 +24,11 @@ public class ObjectiveController {
         return objectiveService.findAll();
     }
 
+    @GetMapping("/objectives/category={name}")
+    public Set<Objective> findByCategoryName(@PathVariable String name) {
+        return objectiveService.findByCategoryName(name);
+    }
+
     @PostMapping("/objectives")
     public Objective create(@RequestBody Objective objective) {
         return objectiveService.save(objective);
