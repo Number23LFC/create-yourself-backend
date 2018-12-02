@@ -51,7 +51,13 @@ public class DataLoader implements CommandLineRunner {
         todo.setDone(false);
         todo.setObjective(objective);
 
+        Todo todo2 = new Todo();
+        todo2.setName("Lot");
+        todo2.setDone(false);
+        todo2.setObjective(objective);
+
         objective.getTodos().add(todo);
+        objective.getTodos().add(todo2);
         category.getObjectives().add(objective);
 
         categoryService.save(category);

@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.mgk.hubertrybarczyk.createyourself.model.Objective;
+import pl.mgk.hubertrybarczyk.createyourself.model.Todo;
 import pl.mgk.hubertrybarczyk.createyourself.service.ObjectiveService;
 
 import java.util.Set;
@@ -48,5 +49,10 @@ public class ObjectiveController {
         System.out.println("ALL: " + all);
         System.out.println("DONE: " + done);
         return (done/all * 100);
+    }
+
+    @GetMapping("/objectives/{id}/todos")
+    public Set<Todo> getAllObjectiveTodos(@PathVariable("id") Long id) {
+        return objectiveService.findTodosByObjectiveId(id);
     }
 }

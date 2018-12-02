@@ -1,7 +1,9 @@
 package pl.mgk.hubertrybarczyk.createyourself.service.jpa;
 
 import org.springframework.stereotype.Service;
+import pl.mgk.hubertrybarczyk.createyourself.model.Objective;
 import pl.mgk.hubertrybarczyk.createyourself.model.Todo;
+import pl.mgk.hubertrybarczyk.createyourself.repository.ObjectiveRepository;
 import pl.mgk.hubertrybarczyk.createyourself.repository.TodoRepository;
 import pl.mgk.hubertrybarczyk.createyourself.service.TodoService;
 
@@ -13,15 +15,23 @@ import java.util.Set;
 public class TodoJpaService implements TodoService {
     
     private final TodoRepository todoRepository;
+    private final ObjectiveRepository objectiveRepository;
 
-    public TodoJpaService(TodoRepository TodoRepository) {
+    public TodoJpaService(TodoRepository TodoRepository, ObjectiveRepository objectiveRepository) {
         this.todoRepository = TodoRepository;
+        this.objectiveRepository = objectiveRepository;
     }
 
     @Override
     public Set<Todo> findAll() {
         Set<Todo> todos = new HashSet<>();
         todoRepository.findAll().forEach(todos::add);
+        return todos;
+    }
+
+    public Set<Todo> findByObjective(Long id) {
+        Objective objective = objectiveRepository.findById(id).orElse(null);
+        Set<Todo> todos = objective.getTodos();
         return todos;
     }
 

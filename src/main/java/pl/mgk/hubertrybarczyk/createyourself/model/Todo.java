@@ -1,5 +1,7 @@
 package pl.mgk.hubertrybarczyk.createyourself.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -14,6 +16,7 @@ public class Todo extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "objective_id")
+    @JsonIgnore
     private Objective objective;
 
     public Todo() {
