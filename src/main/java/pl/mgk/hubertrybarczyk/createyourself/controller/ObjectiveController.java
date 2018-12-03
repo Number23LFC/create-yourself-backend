@@ -4,8 +4,10 @@ package pl.mgk.hubertrybarczyk.createyourself.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pl.mgk.hubertrybarczyk.createyourself.model.Category;
 import pl.mgk.hubertrybarczyk.createyourself.model.Objective;
 import pl.mgk.hubertrybarczyk.createyourself.model.Todo;
+import pl.mgk.hubertrybarczyk.createyourself.service.CategoryService;
 import pl.mgk.hubertrybarczyk.createyourself.service.ObjectiveService;
 
 import java.util.Set;
@@ -15,9 +17,11 @@ import java.util.Set;
 public class ObjectiveController {
 
     private final ObjectiveService objectiveService;
+    private final CategoryService categoryService;
 
-    public ObjectiveController(ObjectiveService objectiveService) {
+    public ObjectiveController(ObjectiveService objectiveService, CategoryService categoryService) {
         this.objectiveService = objectiveService;
+        this.categoryService = categoryService;
     }
 
     @GetMapping("/objectives")
@@ -33,6 +37,8 @@ public class ObjectiveController {
     @PostMapping("/objectives")
     public Objective create(@RequestBody Objective objective) {
         System.out.println("DODAJE CEL: " + objective);
+        Category category = categoryService.findByName(objective.getCategory().getName());
+        objective.setCategory(category);
         return objectiveService.save(objective);
     }
 
