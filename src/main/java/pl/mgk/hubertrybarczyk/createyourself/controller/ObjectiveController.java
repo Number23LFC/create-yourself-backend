@@ -32,6 +32,7 @@ public class ObjectiveController {
 
     @PostMapping("/objectives")
     public Objective create(@RequestBody Objective objective) {
+        System.out.println("DODAJE CEL: " + objective);
         return objectiveService.save(objective);
     }
 

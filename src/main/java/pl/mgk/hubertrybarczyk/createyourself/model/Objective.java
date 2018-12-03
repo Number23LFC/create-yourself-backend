@@ -1,7 +1,5 @@
 package pl.mgk.hubertrybarczyk.createyourself.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -20,12 +18,14 @@ public class Objective extends BaseEntity {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @JsonManagedReference
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "objective")
     private Set<Todo> todos = new HashSet<>();
 
     @Column(name = "isDone")
     private boolean isDone;
+
+    public Objective() {
+    }
 
     public boolean isDone() {
         return isDone;

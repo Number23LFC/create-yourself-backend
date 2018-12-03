@@ -20,6 +20,9 @@ public class Category extends BaseEntity {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
     private Set<Objective> objectives = new HashSet<>();
 
+    public Category() {
+    }
+
     //TODO: icon
 
     public String getName() {
