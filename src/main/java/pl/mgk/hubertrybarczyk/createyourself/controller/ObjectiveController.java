@@ -29,6 +29,20 @@ public class ObjectiveController {
         return objectiveService.findAll();
     }
 
+    @GetMapping("/objectives/{id}")
+    public Objective findObjectiveById(@PathVariable Long id) {
+        return objectiveService.findById(id);
+    }
+
+    @GetMapping("/objectives/{id}/done")
+    public Objective markAsDone(@PathVariable Long id) {
+        Objective objective =  objectiveService.findById(id);
+        objective.getTodos().forEach(todo -> todo.setDone(true));
+        objective.setDone(true);
+        this.objectiveService.save(objective);
+        return objective;
+    }
+
     @GetMapping("/objectives/category={name}")
     public Set<Objective> findByCategoryName(@PathVariable String name) {
         return objectiveService.findByCategoryName(name);
