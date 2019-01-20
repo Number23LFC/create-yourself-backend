@@ -72,6 +72,24 @@ public class ObjectiveController {
         return (done/all * 100);
     }
 
+    @GetMapping("objectives/stats/todo")
+    public double todoObjectives() {
+        double all = objectiveService.findAll().stream().count();
+        double done = objectiveService.findAll().stream().filter(objective -> objective.isDone()).count();
+        System.out.println("ALL: " + all);
+        System.out.println("DONE: " + done);
+        double notDone = all - done;
+        return notDone;
+    }
+
+
+    @GetMapping("objectives/stats/all")
+    public double allObjectives() {
+        double all = objectiveService.findAll().stream().count();
+        System.out.println("ALL: " + all);
+        return (all);
+    }
+
     @GetMapping("/objectives/{id}/todos")
     public Set<Todo> getAllObjectiveTodos(@PathVariable("id") Long id) {
         return objectiveService.findTodosByObjectiveId(id);
