@@ -53,6 +53,7 @@ public class ObjectiveController {
         System.out.println("DODAJE CEL: " + objective);
         Category category = categoryService.findByName(objective.getCategory().getName());
         objective.setCategory(category);
+        objective.setEventDate(objective.getEventDate().plusDays(1));
         return objectiveService.save(objective);
     }
 
