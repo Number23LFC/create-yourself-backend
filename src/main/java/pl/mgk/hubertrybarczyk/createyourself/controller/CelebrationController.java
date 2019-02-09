@@ -36,4 +36,9 @@ public class CelebrationController {
         return new ResponseEntity<>("Celebration has been deleted!", HttpStatus.OK);
     }
 
+    @GetMapping("/celebrations/{id}")
+    public Celebration findCategoryById(@PathVariable Long id) {
+        return celebrationService.findById(id);
+    }
+
 }
