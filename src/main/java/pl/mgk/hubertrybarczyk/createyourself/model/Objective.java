@@ -1,6 +1,7 @@
 package pl.mgk.hubertrybarczyk.createyourself.model;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -23,6 +24,12 @@ public class Objective extends BaseEntity {
 
     @Column(name = "isDone")
     private boolean isDone;
+
+    @Column(name = "eventDate")
+    private LocalDate eventDate;
+
+    @Column(name = "file")
+    private byte[] bytes;
 
     public Objective() {
     }
@@ -66,5 +73,21 @@ public class Objective extends BaseEntity {
 
     public void setTodos(Set<Todo> todos) {
         this.todos = todos;
+    }
+
+    public LocalDate getEventDate() {
+        return eventDate;
+    }
+
+    public void setEventDate(LocalDate eventDate) {
+        this.eventDate = eventDate;
+    }
+
+    public byte[] getBytes() {
+        return bytes;
+    }
+
+    public void setBytes(byte[] bytes) {
+        this.bytes = bytes;
     }
 }

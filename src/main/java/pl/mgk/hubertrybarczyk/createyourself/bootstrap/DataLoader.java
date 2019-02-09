@@ -45,6 +45,7 @@ public class DataLoader implements CommandLineRunner {
         objective.setName("Islandia");
         objective.setDescription("Wycieczka");
         objective.setCategory(category);
+        objective.setEventDate(LocalDate.of(2018,02,20));
 
         Todo todo = new Todo();
         todo.setName("Bilet");
