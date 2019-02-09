@@ -21,6 +21,11 @@ public class CategoryController {
         return categoryService.findAll();
     }
 
+    @GetMapping("/categories/{id}")
+    public Category findCategoryById(@PathVariable Long id) {
+        return categoryService.findById(id);
+    }
+
     @PostMapping("/categories")
     public Category create(@RequestBody Category category) {
         return categoryService.save(category);
