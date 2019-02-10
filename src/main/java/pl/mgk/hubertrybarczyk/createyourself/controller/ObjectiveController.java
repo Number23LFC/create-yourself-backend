@@ -1,7 +1,10 @@
 package pl.mgk.hubertrybarczyk.createyourself.controller;
 
 
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.mgk.hubertrybarczyk.createyourself.model.Category;
@@ -10,6 +13,7 @@ import pl.mgk.hubertrybarczyk.createyourself.model.Todo;
 import pl.mgk.hubertrybarczyk.createyourself.service.CategoryService;
 import pl.mgk.hubertrybarczyk.createyourself.service.ObjectiveService;
 
+import java.io.IOException;
 import java.util.Set;
 
 @RestController()
@@ -94,5 +98,17 @@ public class ObjectiveController {
     @GetMapping("/objectives/{id}/todos")
     public Set<Todo> getAllObjectiveTodos(@PathVariable("id") Long id) {
         return objectiveService.findTodosByObjectiveId(id);
+    }
+
+    @GetMapping(value = "/objectives/{id}/image")
+    public ResponseEntity<InputStreamResource> getImage(@PathVariable("id") Long id) throws IOException {
+        Objective objective = objectiveService.findById(id);
+        System.out.println("Pobieram obraz dla: " + objective.getName());
+        //ClassPathResource imgFile = new ClassPathResource("images/objectives/test.jpg");
+        ClassPathResource imgFile = new ClassPathResource("images/" + objective.getFilepath());
+        return ResponseEntity
+                .ok()
+                .contentType(MediaType.IMAGE_PNG)
+                .body(new InputStreamResource(imgFile.getInputStream()));
     }
 }

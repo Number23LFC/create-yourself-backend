@@ -29,7 +29,7 @@ public class Objective extends BaseEntity {
     private LocalDate eventDate;
 
     @Column(name = "file")
-    private byte[] bytes;
+    private String filepath;
 
     public Objective() {
     }
@@ -83,11 +83,11 @@ public class Objective extends BaseEntity {
         this.eventDate = eventDate;
     }
 
-    public byte[] getBytes() {
-        return bytes;
+    public String getFilepath() {
+        return filepath;
     }
 
-    public void setBytes(byte[] bytes) {
-        this.bytes = bytes;
+    public void setFilepath(String filepath) {
+        this.filepath = filepath;
     }
 }
