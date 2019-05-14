@@ -1,21 +1,10 @@
 package pl.mgk.hubertrybarczyk.createyourself.controller;
 
+import org.springframework.web.bind.annotation.*;
+import pl.mgk.hubertrybarczyk.createyourself.model.Category;
+import pl.mgk.hubertrybarczyk.createyourself.service.CategoryService;
 
 import java.util.Set;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
-import pl.mgk.hubertrybarczyk.createyourself.model.Category;
-import pl.mgk.hubertrybarczyk.createyourself.model.Celebration;
-import pl.mgk.hubertrybarczyk.createyourself.service.CategoryService;
-import sun.util.resources.cldr.teo.CalendarData_teo_KE;
 
 @RestController()
 @CrossOrigin(origins = "http://localhost:4200")
@@ -28,8 +17,13 @@ public class CategoryController {
     }
 
     @GetMapping("/categories")
-    public Set<Category> findAll() {
+    public Set<Category> getAllCategories() {
         return categoryService.findAll();
+    }
+
+    @GetMapping("/categories/{id}")
+    public Category findCategoryById(@PathVariable Long id) {
+        return categoryService.findById(id);
     }
 
     @PostMapping("/categories")

@@ -2,11 +2,13 @@ package pl.mgk.hubertrybarczyk.createyourself.service.jpa;
 
 import org.springframework.stereotype.Service;
 import pl.mgk.hubertrybarczyk.createyourself.model.Objective;
+import pl.mgk.hubertrybarczyk.createyourself.model.Todo;
 import pl.mgk.hubertrybarczyk.createyourself.repository.ObjectiveRepository;
 import pl.mgk.hubertrybarczyk.createyourself.service.ObjectiveService;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 //@Profile("springdatajpa")
@@ -43,5 +45,20 @@ public class ObjectiveJpaService implements ObjectiveService {
     @Override
     public void deleteId(Long aLong) {
         objectiveRepository.deleteById(aLong);
+    }
+
+    public Set<Objective> findByCategoryName(String categoryName) {
+        Set<Objective> objectives = new HashSet<>();
+        objectiveRepository.findAll().forEach(objectives::add);
+        return objectives.stream().filter(obj -> obj.getCategory().getName().equalsIgnoreCase(categoryName)).collect(Collectors.toSet());
+    }
+
+    public Set<Todo> findTodosByObjectiveId(Long id) {
+        Objective objective = objectiveRepository.findById(id).orElse(null);
+        Set <Todo> todos = new HashSet<>();
+        if (objective != null) {
+            todos = objective.getTodos();
+        }
+        return todos;
     }
 }

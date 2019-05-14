@@ -15,6 +15,9 @@ public class Celebration extends BaseEntity {
     @Column(name = "date")
     private LocalDate date;
 
+    public Celebration() {
+    }
+
     public String getDescription() {
         return description;
     }

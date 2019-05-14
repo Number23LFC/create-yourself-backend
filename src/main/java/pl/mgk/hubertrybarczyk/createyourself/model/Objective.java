@@ -1,6 +1,7 @@
 package pl.mgk.hubertrybarczyk.createyourself.model;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,7 +22,26 @@ public class Objective extends BaseEntity {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "objective")
     private Set<Todo> todos = new HashSet<>();
 
-    //TODO: deadling date, importance (enum)
+    @Column(name = "isDone")
+    private boolean isDone;
+
+    @Column(name = "eventDate")
+    private LocalDate eventDate;
+
+    @Column(name = "file")
+    private String filepath;
+
+    public Objective() {
+    }
+
+    public boolean isDone() {
+        return isDone;
+    }
+
+    public void setDone(boolean done) {
+        isDone = done;
+    }
+//TODO: deadling date, importance (enum)
 
     public String getName() {
         return name;
@@ -53,5 +73,21 @@ public class Objective extends BaseEntity {
 
     public void setTodos(Set<Todo> todos) {
         this.todos = todos;
+    }
+
+    public LocalDate getEventDate() {
+        return eventDate;
+    }
+
+    public void setEventDate(LocalDate eventDate) {
+        this.eventDate = eventDate;
+    }
+
+    public String getFilepath() {
+        return filepath;
+    }
+
+    public void setFilepath(String filepath) {
+        this.filepath = filepath;
     }
 }

@@ -39,42 +39,60 @@ public class DataLoader implements CommandLineRunner {
     private void loadData() {
         Category category = new Category();
         category.setName("Podróże");
-        category.setDescription("Wycieczki małe i duże");
+        category.setDescription("Description...");
 
         Objective objective = new Objective();
         objective.setName("Islandia");
         objective.setDescription("Wycieczka");
         objective.setCategory(category);
+        objective.setFilepath("/objectives/test.jpg");
+        objective.setEventDate(LocalDate.of(2018,02,20));
 
         Todo todo = new Todo();
         todo.setName("Bilet");
         todo.setDone(false);
         todo.setObjective(objective);
 
+        Todo todo2 = new Todo();
+        todo2.setName("Lot");
+        todo2.setDone(false);
+        todo2.setObjective(objective);
+
         objective.getTodos().add(todo);
+        objective.getTodos().add(todo2);
         category.getObjectives().add(objective);
 
         categoryService.save(category);
 
         Category category2 = new Category();
         category2.setName("Kariera");
+        category2.setDescription("Description 2");
         categoryService.save(category2);
 
         Category category3 = new Category();
         category3.setName("Sport");
+        category3.setDescription("Descrption 3");
         categoryService.save(category3);
 
         Category category4 = new Category();
         category4.setName("Finanse");
+        category4.setDescription("Description 4");
         categoryService.save(category4);
 
         Objective objective2 = new Objective();
         objective2.setName("Budapest");
         objective2.setDescription("Wycieczka");
         objective2.setCategory(category);
+        objective2.setDone(true);
+        objective2.setFilepath("/objectives/test2.jpg");
         objectiveService.save(objective2);
 
-
+        Objective objective3 = new Objective();
+        objective3.setName("Milion");
+        objective3.setDescription("$$$");
+        objective3.setCategory(category4);
+        objective3.setFilepath("/objectives/test.jpg");
+        objectiveService.save(objective3);
 
 
         try {
@@ -85,10 +103,16 @@ public class DataLoader implements CommandLineRunner {
             celebrationService.save(c1);
 
             Celebration c2 = new Celebration();
-            c2.setDescription("Urodziny Giekonia");
+            c2.setDescription("Urodziny Henia");
             c2.setDate(LocalDate.of(2018,11,23));
             System.out.println(c2.getDate() + " " + c2.getDescription());
             celebrationService.save(c2);
+
+            Celebration c3 = new Celebration();
+            c3.setDescription("Urodziny Alfreda");
+            c3.setDate(LocalDate.of(2018,03,22));
+            System.out.println(c3.getDate() + " " + c3.getDescription());
+            celebrationService.save(c3);
         } catch (Exception e) {
             System.out.println(e.toString());
         }
