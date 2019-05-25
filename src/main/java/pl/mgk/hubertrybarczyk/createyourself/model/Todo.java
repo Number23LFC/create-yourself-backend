@@ -2,6 +2,7 @@ package pl.mgk.hubertrybarczyk.createyourself.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.persistence.*;
 
 @Entity
@@ -12,6 +13,7 @@ public class Todo extends BaseEntity {
     private String name;
 
     @Column(name = "isDone")
+    @JsonProperty
     private boolean isDone;
 
     @ManyToOne
@@ -30,12 +32,12 @@ public class Todo extends BaseEntity {
         this.name = name;
     }
 
-    public boolean isDone() {
+    public boolean getIsDone() {
         return isDone;
     }
 
-    public void setDone(boolean done) {
-        isDone = done;
+    public void setIsDone(boolean isDone) {
+        this.isDone = isDone;
     }
 
     public Objective getObjective() {

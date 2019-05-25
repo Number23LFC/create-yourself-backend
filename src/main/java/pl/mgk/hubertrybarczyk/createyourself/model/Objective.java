@@ -38,7 +38,7 @@ public class Objective extends BaseEntity {
         return isDone;
     }
 
-    public void setDone(boolean done) {
+    public void setIsDone(boolean done) {
         isDone = done;
     }
 //TODO: deadling date, importance (enum)

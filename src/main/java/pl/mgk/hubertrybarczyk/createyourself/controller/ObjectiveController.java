@@ -41,8 +41,8 @@ public class ObjectiveController {
     @GetMapping("/objectives/{id}/done")
     public Objective markAsDone(@PathVariable Long id) {
         Objective objective =  objectiveService.findById(id);
-        objective.getTodos().forEach(todo -> todo.setDone(true));
-        objective.setDone(true);
+        objective.getTodos().forEach(todo -> todo.setIsDone(true));
+        objective.setIsDone(true);
         this.objectiveService.save(objective);
         return objective;
     }
@@ -55,9 +55,12 @@ public class ObjectiveController {
     @PostMapping("/objectives")
     public Objective create(@RequestBody Objective objective) {
         System.out.println("DODAJE CEL: " + objective);
+        System.out.println("TODOSY: " + objective.getTodos().toString());
+        objective.getTodos().forEach(todo -> System.out.println(todo.getName() + " " + todo.getIsDone()));
+        objective.getTodos().forEach(todo -> todo.setObjective(objective));
         Category category = categoryService.findByName(objective.getCategory().getName());
         objective.setCategory(category);
-        objective.setEventDate(objective.getEventDate().plusDays(1));
+        //objective.setEventDate(objective.getEventDate().plusDays(1));
         return objectiveService.save(objective);
     }
 

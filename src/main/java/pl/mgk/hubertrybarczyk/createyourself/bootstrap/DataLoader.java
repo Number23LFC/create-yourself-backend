@@ -50,12 +50,12 @@ public class DataLoader implements CommandLineRunner {
 
         Todo todo = new Todo();
         todo.setName("Bilet");
-        todo.setDone(false);
+        todo.setIsDone(false);
         todo.setObjective(objective);
 
         Todo todo2 = new Todo();
         todo2.setName("Lot");
-        todo2.setDone(false);
+        todo2.setIsDone(false);
         todo2.setObjective(objective);
 
         objective.getTodos().add(todo);
@@ -83,7 +83,7 @@ public class DataLoader implements CommandLineRunner {
         objective2.setName("Budapest");
         objective2.setDescription("Wycieczka");
         objective2.setCategory(category);
-        objective2.setDone(true);
+        objective2.setIsDone(true);
         objective2.setFilepath("/objectives/test2.jpg");
         objectiveService.save(objective2);
 
