@@ -20,12 +20,15 @@ public class StorageService {
     Logger log = LoggerFactory.getLogger(this.getClass().getName());
     private final Path rootLocation = Paths.get("images");
 
-    public void store(MultipartFile file) {
+    public void store(MultipartFile file, String fileName) {
         System.out.println("FILE STORE: " + file.getOriginalFilename());
         System.out.println("FILE STORE: " + file.getContentType());
         try { //TODO KATALOG NIE ISTNIEJE?!
-            Files.createDirectory(rootLocation);
-            Files.copy(file.getInputStream(), this.rootLocation.resolve(file.getOriginalFilename()));
+            if (!rootLocation.toFile().exists()) {
+                Files.createDirectory(rootLocation);
+            }
+            Files.copy(file.getInputStream(), this.rootLocation.resolve(fileName));
+            //Files.copy(file.getInputStream(), this.rootLocation.resolve(file.getOriginalFilename()));
         } catch (Exception e) {
             throw new RuntimeException("FAIL!");
         }

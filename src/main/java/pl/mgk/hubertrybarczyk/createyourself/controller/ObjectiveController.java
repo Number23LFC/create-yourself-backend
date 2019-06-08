@@ -3,6 +3,7 @@ package pl.mgk.hubertrybarczyk.createyourself.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
@@ -128,15 +129,27 @@ public class ObjectiveController {
         return null;
     }
 
+    private static String getFileExtension(String name) {
+        String extension = "";
+        try {
+                extension = name.substring(name.lastIndexOf("."));
+        } catch (Exception e) {
+            extension = "";
+        }
+        System.out.println("ROZSZERZENIE: " + extension);
+        return extension;
+
+    }
 
     @PostMapping("/objectives/{id}/image")
     public ResponseEntity<String> handleFileUpload(@PathVariable("id") Long id, @RequestParam("file") MultipartFile file) {
         String message = "";
         try {
-            storageService.store(file);
-            files.add(file.getOriginalFilename());
             Objective objective = objectiveService.findById(id);
-            objective.setFilepath("/objectives/test.jpg");
+            String filePath = objective.getCategory().getId() + "-" + objective.getId() + getFileExtension(file.getOriginalFilename());
+            objective.setFilepath(filePath);
+            storageService.store(file, filePath);
+            files.add(file.getOriginalFilename());
             this.objectiveService.save(objective);
             System.out.println("Zapisuje obraz dla: " + objective.getName());
 
