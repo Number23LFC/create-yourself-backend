@@ -1,12 +1,17 @@
 package pl.mgk.hubertrybarczyk.createyourself.controller;
 
 
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import pl.mgk.hubertrybarczyk.createyourself.model.Category;
 import pl.mgk.hubertrybarczyk.createyourself.model.Objective;
 import pl.mgk.hubertrybarczyk.createyourself.model.Todo;
@@ -15,6 +20,7 @@ import pl.mgk.hubertrybarczyk.createyourself.service.ObjectiveService;
 
 import java.io.IOException;
 import java.util.Set;
+import pl.mgk.hubertrybarczyk.createyourself.service.jpa.StorageService;
 
 @RestController()
 @CrossOrigin(origins = "http://localhost:4200")
@@ -22,10 +28,14 @@ public class ObjectiveController {
 
     private final ObjectiveService objectiveService;
     private final CategoryService categoryService;
+    private final StorageService storageService;
+    List<String> files = new ArrayList<String>();
 
-    public ObjectiveController(ObjectiveService objectiveService, CategoryService categoryService) {
+
+    public ObjectiveController(ObjectiveService objectiveService, CategoryService categoryService, StorageService storageService) {
         this.objectiveService = objectiveService;
         this.categoryService = categoryService;
+        this.storageService = storageService;
     }
 
     @GetMapping("/objectives")
@@ -109,9 +119,32 @@ public class ObjectiveController {
         System.out.println("Pobieram obraz dla: " + objective.getName());
         //ClassPathResource imgFile = new ClassPathResource("images/objectives/test.jpg");
         ClassPathResource imgFile = new ClassPathResource("images/" + objective.getFilepath());
-        return ResponseEntity
+        if (imgFile != null) {
+            return ResponseEntity
                 .ok()
                 .contentType(MediaType.IMAGE_PNG)
                 .body(new InputStreamResource(imgFile.getInputStream()));
+        }
+        return null;
+    }
+
+
+    @PostMapping("/objectives/{id}/image")
+    public ResponseEntity<String> handleFileUpload(@PathVariable("id") Long id, @RequestParam("file") MultipartFile file) {
+        String message = "";
+        try {
+            storageService.store(file);
+            files.add(file.getOriginalFilename());
+            Objective objective = objectiveService.findById(id);
+            objective.setFilepath("/objectives/test.jpg");
+            this.objectiveService.save(objective);
+            System.out.println("Zapisuje obraz dla: " + objective.getName());
+
+            message = "You successfully uploaded " + file.getOriginalFilename() + "!";
+            return ResponseEntity.status(HttpStatus.OK).body(message);
+        } catch (Exception e) {
+            message = "FAIL to upload " + file.getOriginalFilename() + "!";
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(message);
+        }
     }
 }

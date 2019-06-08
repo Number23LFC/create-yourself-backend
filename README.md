@@ -1,5 +1,14 @@
 # Create Yourself - Human 2.0 Experiment
 
+TODO:
+- Wyliczanie progresu
+- Dodawanie foto
+
+
+- Dodawanie ikon kategorii
+- CSS fixy
+
+
 Dev:
 - Spring Boot
 - H2 Database
