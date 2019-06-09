@@ -1,6 +1,11 @@
 package pl.mgk.hubertrybarczyk.createyourself.controller;
 
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -30,6 +35,8 @@ public class ObjectiveController {
     private final ObjectiveService objectiveService;
     private final CategoryService categoryService;
     private final StorageService storageService;
+
+    private final Path rootLocation = Paths.get("images");
     List<String> files = new ArrayList<String>();
 
 
@@ -119,12 +126,16 @@ public class ObjectiveController {
         Objective objective = objectiveService.findById(id);
         System.out.println("Pobieram obraz dla: " + objective.getName());
         //ClassPathResource imgFile = new ClassPathResource("images/objectives/test.jpg");
-        ClassPathResource imgFile = new ClassPathResource("images/" + objective.getFilepath());
-        if (imgFile != null) {
-            return ResponseEntity
-                .ok()
-                .contentType(MediaType.IMAGE_PNG)
-                .body(new InputStreamResource(imgFile.getInputStream()));
+        if (objective.getFilepath() != null) {
+            File initialFile = new File(rootLocation + "/" + objective.getFilepath());
+            InputStream imgFile = new FileInputStream(initialFile);
+            System.out.println("PATH: " + rootLocation + "/" + objective.getFilepath());
+            if (imgFile != null) {
+                return ResponseEntity
+                    .ok()
+                    .contentType(MediaType.IMAGE_PNG)
+                    .body(new InputStreamResource(imgFile));
+            }
         }
         return null;
     }

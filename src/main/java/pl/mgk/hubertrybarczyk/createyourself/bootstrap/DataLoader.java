@@ -45,7 +45,7 @@ public class DataLoader implements CommandLineRunner {
         objective.setName("Islandia");
         objective.setDescription("Wycieczka");
         objective.setCategory(category);
-        objective.setFilepath("/objectives/test.jpg");
+        objective.setFilepath("test.jpg");
         objective.setEventDate(LocalDate.of(2018,02,20));
 
         Todo todo = new Todo();
@@ -84,14 +84,14 @@ public class DataLoader implements CommandLineRunner {
         objective2.setDescription("Wycieczka");
         objective2.setCategory(category);
         objective2.setIsDone(true);
-        objective2.setFilepath("/objectives/test2.jpg");
+        objective2.setFilepath("test2.jpg");
         objectiveService.save(objective2);
 
         Objective objective3 = new Objective();
         objective3.setName("Milion");
         objective3.setDescription("$$$");
         objective3.setCategory(category4);
-        objective3.setFilepath("/objectives/test.jpg");
+        objective3.setFilepath("test.jpg");
         objectiveService.save(objective3);
 
 
