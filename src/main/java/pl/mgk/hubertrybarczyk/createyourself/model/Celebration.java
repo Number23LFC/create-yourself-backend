@@ -1,5 +1,6 @@
 package pl.mgk.hubertrybarczyk.createyourself.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -14,6 +15,10 @@ public class Celebration extends BaseEntity {
 
     @Column(name = "date")
     private LocalDate date;
+
+    @Column(name = "isDone")
+    @JsonProperty
+    private boolean isDone;
 
     public Celebration() {
     }
@@ -32,5 +37,13 @@ public class Celebration extends BaseEntity {
 
     public void setDate(LocalDate date) {
         this.date = date;
+    }
+
+    public boolean isDone() {
+        return isDone;
+    }
+
+    public void setDone(boolean done) {
+        isDone = done;
     }
 }

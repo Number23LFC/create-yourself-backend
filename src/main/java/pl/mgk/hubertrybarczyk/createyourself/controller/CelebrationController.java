@@ -1,6 +1,8 @@
 package pl.mgk.hubertrybarczyk.createyourself.controller;
 
 
+import java.time.LocalDate;
+import java.util.Date;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,11 +23,26 @@ public class CelebrationController {
 
     @GetMapping("/celebrations")
     public Set<Celebration> findAll() {
+        updateAllCelebrationsDate();
         return celebrationService.findAll();
+    }
+
+    private void updateAllCelebrationsDate() {
+        Set<Celebration> allCelebrations = celebrationService.findAll();
+        for (Celebration celebration : allCelebrations) {
+            LocalDate celbrationDate = celebration.getDate();
+            celbrationDate = celbrationDate.withYear(LocalDate.now().getYear());
+            celebration.setDate(celbrationDate);
+            boolean isDone = celbrationDate.isBefore(LocalDate.now());
+            celebration.setDone(isDone);
+            celebrationService.save(celebration);
+        }
     }
 
     @PostMapping("/celebrations")
     public Celebration create(@RequestBody Celebration celebration) {
+        boolean isDone = celebration.getDate().isBefore(LocalDate.now());
+        celebration.setDone(isDone);
         return celebrationService.save(celebration);
     }
 

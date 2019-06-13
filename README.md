@@ -1,8 +1,8 @@
 # Create Yourself - Human 2.0 Experiment
 
 TODO:
-- Wyliczanie progresu i kolorowanie
-- Dodawanie foto
++ Wyliczanie progresu i kolorowanie
++ Dodawanie foto
 - Planer msc
 - daty: sortowanie kolorowanie
 - deploy
