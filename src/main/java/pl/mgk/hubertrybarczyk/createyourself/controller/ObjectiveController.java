@@ -58,10 +58,14 @@ public class ObjectiveController {
 
     @GetMapping("/objectives/{id}/done")
     public Objective markAsDone(@PathVariable Long id) {
-        Objective objective =  objectiveService.findById(id);
-        objective.getTodos().forEach(todo -> todo.setIsDone(true));
-        objective.setIsDone(true);
-        this.objectiveService.save(objective);
+        Objective objective = objectiveService.findById(id);
+        if (objective != null) {
+            if (objective.getTodos() != null && !objective.getTodos().isEmpty()) {
+                objective.getTodos().forEach(todo -> todo.setIsDone(true));
+            }
+            objective.setIsDone(true);
+            this.objectiveService.save(objective);
+        }
         return objective;
     }
 
