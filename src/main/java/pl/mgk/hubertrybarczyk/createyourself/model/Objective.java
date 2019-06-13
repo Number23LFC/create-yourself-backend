@@ -1,5 +1,6 @@
 package pl.mgk.hubertrybarczyk.createyourself.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -23,6 +24,7 @@ public class Objective extends BaseEntity {
     private Set<Todo> todos = new HashSet<>();
 
     @Column(name = "isDone")
+    @JsonProperty
     private boolean isDone;
 
     @Column(name = "eventDate")
