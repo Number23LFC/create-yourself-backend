@@ -4,11 +4,10 @@ TODO:
 + Wyliczanie progresu i kolorowanie
 + Dodawanie foto
 - Planer msc
-- daty: sortowanie kolorowanie
++ daty: sortowanie kolorowanie
 - deploy
 
 
-- Dodawanie ikon kategorii
 - CSS fixy
 
 
