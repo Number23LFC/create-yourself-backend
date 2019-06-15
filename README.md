@@ -5,6 +5,8 @@ TODO:
 + Dodawanie foto
 - Planer msc
 + daty: sortowanie kolorowanie
+- css fix
+- refresh fix
 - deploy
 
 
