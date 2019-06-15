@@ -82,7 +82,9 @@ public class ObjectiveController {
         objective.getTodos().forEach(todo -> todo.setObjective(objective));
         Category category = categoryService.findByName(objective.getCategory().getName());
         objective.setCategory(category);
-        //objective.setEventDate(objective.getEventDate().plusDays(1));
+        if (objective.getEventDate() != null) {
+            objective.setEventDate(objective.getEventDate().plusDays(1));
+        }
         return objectiveService.save(objective);
     }
 
