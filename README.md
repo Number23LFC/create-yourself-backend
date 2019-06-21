@@ -3,10 +3,12 @@
 TODO:
 + Wyliczanie progresu i kolorowanie
 + Dodawanie foto
-- Planer msc
 + daty: sortowanie kolorowanie
-- css fix
+- Planer msc
+- css fix (progess bar)
+- css fix (wyglad chcboxow)
 - refresh fix
+- odznaczenie todo fix
 - deploy
 
 

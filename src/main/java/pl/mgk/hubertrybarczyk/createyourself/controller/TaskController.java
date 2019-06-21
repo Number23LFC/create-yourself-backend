@@ -40,7 +40,7 @@ public class TaskController {
     public Task markAsDone(@PathVariable Long id) {
         Task task = taskService.findById(id);
         if (task != null) {
-            task.setDone(true);
+            task.setIsDone(true);
             this.taskService.save(task);
         }
         return task;
