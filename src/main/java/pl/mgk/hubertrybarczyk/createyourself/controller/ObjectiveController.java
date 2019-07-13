@@ -26,6 +26,8 @@ import pl.mgk.hubertrybarczyk.createyourself.service.ObjectiveService;
 
 import java.io.IOException;
 import java.util.Set;
+
+import pl.mgk.hubertrybarczyk.createyourself.service.TodoService;
 import pl.mgk.hubertrybarczyk.createyourself.service.jpa.StorageService;
 
 @RestController()
@@ -35,15 +37,17 @@ public class ObjectiveController {
     private final ObjectiveService objectiveService;
     private final CategoryService categoryService;
     private final StorageService storageService;
+    private final TodoService todoService;
 
     private final Path rootLocation = Paths.get("images");
     List<String> files = new ArrayList<String>();
 
 
-    public ObjectiveController(ObjectiveService objectiveService, CategoryService categoryService, StorageService storageService) {
+    public ObjectiveController(ObjectiveService objectiveService, CategoryService categoryService, StorageService storageService, TodoService todoService) {
         this.objectiveService = objectiveService;
         this.categoryService = categoryService;
         this.storageService = storageService;
+        this.todoService = todoService;
     }
 
     @GetMapping("/objectives")
@@ -76,6 +80,8 @@ public class ObjectiveController {
 
     @PostMapping("/objectives")
     public Objective create(@RequestBody Objective objective) {
+        Set<Todo> savedTodos = todoService.findByObjective(objective);
+        savedTodos.forEach(todo -> this.todoService.delete(todo));
         System.out.println("DODAJE CEL: " + objective);
         System.out.println("TODOSY: " + objective.getTodos().toString());
         objective.getTodos().forEach(todo -> System.out.println(todo.getName() + " " + todo.getIsDone()));

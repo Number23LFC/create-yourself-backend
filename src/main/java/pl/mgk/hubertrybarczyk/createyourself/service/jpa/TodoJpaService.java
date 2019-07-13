@@ -54,4 +54,8 @@ public class TodoJpaService implements TodoService {
     public void deleteId(Long aLong) {
         todoRepository.deleteById(aLong);
     }
+
+    public Set<Todo> findByObjective(Objective objective) {
+        return todoRepository.findAllByObjective(objective);
+    }
 }
