@@ -1,5 +1,7 @@
 package pl.mgk.hubertrybarczyk.createyourself.controller;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.mgk.hubertrybarczyk.createyourself.model.Category;
 import pl.mgk.hubertrybarczyk.createyourself.service.CategoryService;
@@ -29,5 +31,12 @@ public class CategoryController {
     @PostMapping("/categories")
     public Category create(@RequestBody Category category) {
         return categoryService.save(category);
+    }
+
+    @DeleteMapping("categories/{id}")
+    public ResponseEntity<String> deleteCelebration(@PathVariable("id") Long id) {
+        System.out.println("Delete Celebration with ID = " + id + "...");
+        categoryService.deleteId(id);
+        return new ResponseEntity<>("Celebration has been deleted!", HttpStatus.OK);
     }
 }
