@@ -42,7 +42,9 @@ public class CelebrationController {
     @PostMapping("/celebrations")
     public Celebration create(@RequestBody Celebration celebration) {
         boolean isDone = celebration.getDate().isBefore(LocalDate.now());
+        LocalDate updatedDate = celebration.getDate().plusDays(1);
         celebration.setDone(isDone);
+        celebration.setDate(updatedDate);
         return celebrationService.save(celebration);
     }
 
