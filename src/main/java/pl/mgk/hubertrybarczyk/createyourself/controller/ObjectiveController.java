@@ -134,13 +134,15 @@ public class ObjectiveController {
         //ClassPathResource imgFile = new ClassPathResource("images/objectives/test.jpg");
         if (objective.getFilepath() != null) {
             File initialFile = new File(rootLocation + "/" + objective.getFilepath());
-            InputStream imgFile = new FileInputStream(initialFile);
-            System.out.println("PATH: " + rootLocation + "/" + objective.getFilepath());
-            if (imgFile != null) {
-                return ResponseEntity
-                    .ok()
-                    .contentType(MediaType.IMAGE_PNG)
-                    .body(new InputStreamResource(imgFile));
+            if(initialFile.exists()) {
+                InputStream imgFile = new FileInputStream(initialFile);
+                System.out.println("PATH: " + rootLocation + "/" + objective.getFilepath());
+                if (imgFile != null) {
+                    return ResponseEntity
+                        .ok()
+                        .contentType(MediaType.IMAGE_PNG)
+                        .body(new InputStreamResource(imgFile));
+                }
             }
         }
         return null;
