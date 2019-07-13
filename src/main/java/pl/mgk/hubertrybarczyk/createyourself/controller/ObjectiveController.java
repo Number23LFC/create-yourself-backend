@@ -80,8 +80,13 @@ public class ObjectiveController {
 
     @PostMapping("/objectives")
     public Objective create(@RequestBody Objective objective) {
-        Set<Todo> savedTodos = todoService.findByObjective(objective);
-        savedTodos.forEach(todo -> this.todoService.delete(todo));
+        if (objective.getId() != null) {
+            Objective savedObjective = objectiveService.findById(objective.getId());
+            if (savedObjective != null) {
+                Set<Todo> savedTodos = todoService.findByObjective(objective);
+                savedTodos.forEach(todo -> this.todoService.delete(todo));
+            }
+        }
         System.out.println("DODAJE CEL: " + objective);
         System.out.println("TODOSY: " + objective.getTodos().toString());
         objective.getTodos().forEach(todo -> System.out.println(todo.getName() + " " + todo.getIsDone()));
